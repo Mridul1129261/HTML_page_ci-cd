@@ -23,7 +23,9 @@ jobs:
       - name: Create HTML file
         run: |
           mkdir -p "${{ github.event.inputs.slug }}"
-          echo "${{ github.event.inputs.html }}" > "${{ github.event.inputs.slug }}/index.html"
+          cat <<'EOF' > "${{ github.event.inputs.slug }}/index.html"
+          ${{ github.event.inputs.html }}
+          EOF
 
       - name: Commit and push
         run: |
